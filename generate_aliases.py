@@ -111,7 +111,7 @@ def main(argv):
             print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
               ' '.join([a[1] for a in cmd])))
         elif output in ("ps1", "powershell"):
-            tpl = "function {}([Parameter(ValueFromRemainingArguments = $true)]$params) {{ & {} $params }}"
+            tpl = "function {}() {{ & {} $args }}"
             print(tpl.format(''.join([a[0] for a in cmd]),
               ' '.join([a[1] for a in cmd])))
 

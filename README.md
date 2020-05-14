@@ -10,22 +10,22 @@ This repository contains [a script](generate_aliases.py) to generate hundreds of
 Some of the 800 generated aliases are:
 
 ```powershell
-function k([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl $params }
-function kg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get $params }
-function kgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods $params }
+function k() { & kubectl $args }
+function kg() { & kubectl get $args }
+function kgpo() { & kubectl get pods $args }
 
-function ksysgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get pods $params }
+function ksysgpo() { & kubectl --namespace=kube-system get pods $args }
 
-function krm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete $params }
-function krmf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --recursive -f $params }
-function krming([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress $params }
-function krmingl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress -l $params }
-function krmingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress --all $params }
+function krm() { & kubectl delete $args }
+function krmf() { & kubectl delete --recursive -f $args }
+function krming() { & kubectl delete ingress $args }
+function krmingl() { & kubectl delete ingress -l $args }
+function krmingall() { & kubectl delete ingress --all $args }
 
-function kgsvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml $params }
-function kgsvcwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --namespace $params }
+function kgsvcoyaml() { & kubectl get service -o=yaml $args }
+function kgsvcwn() { & kubectl get service --watch --namespace $args }
 
-function kgwf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch --recursive -f $params }
+function kgwf() { & kubectl get --watch --recursive -f $args }
 ...
 ```
 
@@ -41,7 +41,7 @@ You can directly download the [`kubectl_aliases.ps1`](kubectl_aliases.ps1) file 
 To print the full command before running it, add this to your `profile.ps1` file:
 
 ```powershell
-function kubectl([Parameter(ValueFromRemainingArguments = $true)]$params) { Write-Output "> kubectl $(@($params | ForEach-Object {$_}) -join ' ')"; & kubectl.exe $params; }
+function kubectl() { Write-Output "> kubectl $(@($args | ForEach-Object {$_}) -join ' ')"; & kubectl.exe $args; }
 ```
 
 ### Syntax explanation
