@@ -16,6 +16,8 @@ function k([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl 
 function ksys([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system $params }
 function ka([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl apply --recursive -f $params }
 function ksysa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system apply --recursive -f $params }
+function kak([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl apply -k $params }
+function kk([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl kustomize $params }
 function kex([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl exec -i -t $params }
 function ksysex([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system exec -i -t $params }
 function klo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f $params }
@@ -23,6 +25,7 @@ function ksyslo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function klop([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f -p $params }
 function ksyslop([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system logs -f -p $params }
 function kp([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl proxy $params }
+function kpf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl port-forward $params }
 function kg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get $params }
 function ksysg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get $params }
 function kd([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe $params }
@@ -704,6 +707,7 @@ function kgdepwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params)
 function ksysgdepwslowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl --namespace=kube-system get deployment --watch --show-labels -o=wide -l $params }
 function kexn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl exec -i -t --namespace $params }
 function klon([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl logs -f --namespace $params }
+function kpfn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl port-forward --namespace $params }
 function kgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --namespace $params }
 function kdn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe --namespace $params }
 function krmn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --namespace $params }
