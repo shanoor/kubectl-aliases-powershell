@@ -34,10 +34,13 @@ def main(argv):
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
+        ('ak', 'apply -k', None, ['sys']),
+        ('k', 'kustomize', None, ['sys']),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs -f', None, None),
         ('lop', 'logs -f -p', None, None),
         ('p', 'proxy', None, ['sys']),
+        ('pf', 'port-forward', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
@@ -73,7 +76,7 @@ def main(argv):
     positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
                        , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
                        'all']), ('n', '--namespace', ['g', 'd', 'rm',
-                       'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
+                       'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
     parts = [
@@ -139,7 +142,8 @@ def gen(parts):
         new_out = []
         for segment in combos:
             for stuff in orig:
-                new_out.append(stuff + segment)
+                if is_valid(stuff + segment):
+                    new_out.append(stuff + segment)
         out = new_out
     return out
 
